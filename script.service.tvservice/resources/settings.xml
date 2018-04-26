@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<settings>
+  <category label="Основные">
+    <setting default="http://192.168.0.2:5000" id="service_url" label="Server" type="text" />
+    <setting default="admin" id="auth_username" label="Login" type="text" />
+    <setting default="admin" id="auth_password" label="Password" option="hidden" type="text" />
+    <setting default="127.0.0.1" id="host" label="IP адрес клиета" type="ipaddress" />
+    <setting default="8899" id="port" label="Порт клиента" type="number" />
+    <setting default="127.0.0.1" id="ace_host" label="ACEStream сервер" type="ipaddress" />
+    <setting default="6878" id="ace_port" label="ACEStream порт" type="number" />
+    <setting default="true" id="hd" label="Предпочитать HD потоки" type="bool" />
+    <setting default="1" id="p2p" label="Приоритет потоков" type="enum" values="по приоритету ресурса|приоритет P2P| приоритет HLS" />
+    <setting default="true" id="p2p_check" label="Проверять P2P потоки" type="bool" />
+    <setting default="1000" id="max_connect_ms" label="Таймаут теста ConnectTimeout (мс)" type="number" />
+    <setting default="1000" id="max_read_ms" label="Таймаут теста ReadTimeout (мс)" type="number" />
+  </category>
+  <category label="Ресурсы">
+    <setting default="true" id="mod_torrenttv" label="torrent-tv.ru (P2P)" type="bool" />
+    <setting default="" id="mod_torrenttv.username" label="Login" type="text" visible="eq(-1,true)" />
+    <setting default="" id="mod_torrenttv.password" label="Password" option="hidden" type="text" visible="eq(-2,true)" />
+    <setting default="true" id="mod_oneliketv" label="onelike.tv (HLS)" type="bool" />
+    <setting default="true" id="mod_trashtv" label="trash.tv (P2P)" type="bool" />
+    <setting default="true" id="mod_tvtorrent" label="tv-torrent.info (P2P)" type="bool" />
+    <setting default="true" id="mod_oktv" label="ok-tv.org (HLS)" type="bool" />
+    <setting default="true" id="mod_asplaylist" label="asplaylist.net (P2P)" type="bool" />
+    <setting default="true" id="mod_glaz" label="glaz.tv (HLS)" type="bool" />
+    <setting default="true" id="mod_allfontv" label="allfon-tv.com (P2P)" type="bool" />
+    <setting default="true" id="mod_alltvonline" label="alltvonline.ru (HLS)" type="bool" />
+    <setting default="true" id="mod_onlytv" label="only-tv.org (HLS)" type="bool" />
+    <setting default="true" id="mod_tvonly" label="tv-only.org (HLS)" type="bool" />
+    <setting default="true" id="mod_fanattv" label="fanat.tv (HLS)" type="bool" />
+    <setting default="true" id="mod_yandex" label="yandex.ru (HLS)" type="bool" />
+    <setting default="true" id="mod_listiptv" label="listiptv.ru (HLS)" type="bool" />
+  </category>
+  <setting id="host" value="127.0.0.1" />
+  <setting id="port" value="8899" />
+  <setting id="p2p_check" value="true" />
+  <setting id="ace_host" value="127.0.0.1" />
+  <setting id="ace_port" value="6878" />
+  <setting id="hd" value="true" />
+  <setting id="p2p" value="1" />
+  <setting id="max_connect_ms" value="1000" />
+  <setting id="max_read_ms" value="2000" />
+  <setting id="mod_oktv" value="true" />
+  <setting id="mod_oneliketv" value="true" />
+  <setting id="mod_onlytv" value="true" />
+  <setting id="mod_allfontv" value="true" />
+  <setting id="mod_listiptv" value="true" />
+  <setting id="mod_alltvonline" value="true" />
+  <setting id="mod_asplaylist" value="true" />
+  <setting id="mod_fanattv" value="true" />
+  <setting id="mod_glaz" value="true" />
+  <setting id="mod_torrenttv" value="true" />
+  <setting id="mod_torrenttv.username" value="" />
+  <setting id="mod_torrenttv.password" value="" />
+  <setting id="mod_trashtv" value="true" />
+  <setting id="mod_tvonly" value="true" />
+  <setting id="mod_tvtorrent" value="true" />
+  <setting id="mod_yandex" value="true" />
+</settings>
