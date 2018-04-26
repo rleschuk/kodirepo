@@ -1,0 +1,13 @@
+*
+
+!addons.xml
+
+!/repository*
+!/repository*/*zip
+!/repository*/*md5
+
+!/script*
+!/script*/*zip
+!/script*/*md5
+
+!.gitignore
