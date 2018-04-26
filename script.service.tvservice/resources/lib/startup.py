@@ -7,7 +7,7 @@ import sys
 import time
 import requests
 import xbmc, xbmcaddon
-from multiprocessing import Process
+from threading import Thread
 
 monitor = xbmc.Monitor()
 addon = xbmcaddon.Addon()
@@ -24,7 +24,7 @@ def stop():
          addon.getSetting('port')))
 
 if __name__ == '__main__':
-    server = Process(target=main)
+    server = Thread(target=main)
     server.daemon = True
     server.start()
     while not monitor.abortRequested():
