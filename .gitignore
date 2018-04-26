@@ -1,6 +1,7 @@
 *
 
 !addons.xml
+!addons.xml.md5
 
 !/repository*
 !/repository*/*zip
