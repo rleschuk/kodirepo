@@ -19,7 +19,7 @@ def shutdown():
     request.environ.get('werkzeug.server.shutdown')()
     return Response('Server shutting down...', status=200)
 
-@app.route('/playlist', methods=['GET'])
+@app.route('/', methods=['GET'])
 def playlist():
     addon = xbmcaddon.Addon()
     response = api_request('api/channels')
