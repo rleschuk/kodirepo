@@ -19,7 +19,7 @@ def shutdown():
     request.environ.get('werkzeug.server.shutdown')()
     return Response('Server shutting down...', status=200)
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def playlist():
     addon = xbmcaddon.Addon()
     response = api_request('api/channels')
@@ -37,13 +37,13 @@ def playlist():
         m3u.append('&'.join(url))
     return ('\n'.join(m3u)).encode('utf8')
 
-@app.route('/epg', methods=['GET'])
+@app.route('/epg')
 def epg():
     addon = xbmcaddon.Addon()
     response = api_request('api/epgs?limit=false')
     return response
 
-@app.route('/channel/<int:channel_id>', methods=['GET'])
+@app.route('/channel/<int:channel_id>')
 def channel(channel_id):
     addon = xbmcaddon.Addon()
     response = api_request('api/channels/%s' % channel_id)
