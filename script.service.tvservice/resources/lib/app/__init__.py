@@ -35,7 +35,7 @@ def playlist():
                 channel_id = channel['id']
             )]
         m3u.append('&'.join(url))
-    return Response('\n'.join(m3u), status=200, mimetype='text/plain')
+    return ('\n'.join(m3u)).encode('utf8')
 
 @app.route('/epg', methods=['GET'])
 def epg():
