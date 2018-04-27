@@ -757,10 +757,11 @@ def run_simple(hostname, port, application, use_reloader=False,
         display_hostname = hostname not in ('', '*') and hostname or 'localhost'
         if ':' in display_hostname:
             display_hostname = '[%s]' % display_hostname
+        quit_msg = '(Press CTRL+C to quit)'
         port = sock.getsockname()[1]
-        _log('info', ' * Running on %s://%s:%d/',
+        _log('info', ' * Running on %s://%s:%d/ %s',
              ssl_context is None and 'http' or 'https',
-             display_hostname, port)
+             display_hostname, port, quit_msg)
 
     def inner():
         try:
