@@ -11,14 +11,16 @@ import logging
 import traceback
 import datetime
 from BeautifulSoup import BeautifulSoup
-import xbmc, xbmcaddon
+import xbmc
+
+from app import addon
 
 from app.memorize import memorize_response
 
 
 class Base(object):
     def __init__(self):
-        self.addon = xbmcaddon.Addon()
+        self.addon = addon
         self.json = json
         self.re = re
         self.traceback = traceback

@@ -7,10 +7,13 @@ import requests
 import importlib
 from flask import Flask, Response, request, jsonify, redirect, abort
 from flask_cors import CORS, cross_origin
-import xbmc, xbmcaddon
+from app.addon import addon
+import xbmc
 
 app = Flask(__name__)
 cors = CORS(app)
+monitor = xbmc.Monitor()
+
 from app.utils import order, test, api_request
 from app.kodiapi import kodiapi, notification
 
@@ -21,7 +24,6 @@ def shutdown():
 
 @app.route('/')
 def playlist():
-    addon = xbmcaddon.Addon()
     response = api_request('api/channels')
     m3u = []
     m3u.append('#EXTM3U')
@@ -39,13 +41,11 @@ def playlist():
 
 @app.route('/epg')
 def epg():
-    addon = xbmcaddon.Addon()
     response = api_request('api/epgs?limit=false')
     return response
 
 @app.route('/channel/<int:channel_id>')
 def channel(channel_id):
-    addon = xbmcaddon.Addon()
     response = api_request('api/channels/%s' % channel_id)
     ace_host = addon.getSetting('ace_host')
     ace_port = addon.getSetting('ace_port')

@@ -6,7 +6,9 @@ import re
 import json
 import requests
 import datetime
-import xbmc, xbmcaddon
+import xbmc
+
+from app import addon
 
 class InternalServerError(Exception): pass
 class NotFound(Exception): pass
@@ -17,7 +19,6 @@ def get_response(url, **kwargs):
     return response
 
 def api_request(route):
-    addon = xbmcaddon.Addon()
     json = get_response('%s/%s' % (addon.getSetting('service_url'), route),
         auth = (addon.getSetting('auth_username'), addon.getSetting('auth_password')),
         timeout = (2, 5)
@@ -29,7 +30,7 @@ def order(origins, hd=0, p2p=0):
     print('p2p = %s' % p2p)
     tmp = origins
     result = []
-    if hd == '1':
+    if hd == 1:
         result.extend([c for c in tmp \
             if re.search('HD', c['name'])])
         result.extend([c for c in tmp \
@@ -37,14 +38,14 @@ def order(origins, hd=0, p2p=0):
             and c not in result])
         tmp = result
         result = []
-    if p2p == '1':
+    if p2p == 1:
         result.extend([c for c in tmp \
             if re.search('(^/ace/|acestream)', c['link']) \
             and c not in result])
         result.extend([c for c in tmp \
             if not re.search('(^/ace/|acestream)', c['link']) \
             and c not in result])
-    elif p2p == '2':
+    elif p2p == 2:
         result.extend([c for c in tmp \
             if not re.search('(^/ace/|acestream)', c['link']) \
             and c not in result])
@@ -54,11 +55,10 @@ def order(origins, hd=0, p2p=0):
     return result if result else tmp
 
 def test(url):
-    addon = xbmcaddon.Addon()
-    latency = int(addon.getSetting('max_read_ms'))
+    latency = addon.getSetting('max_read_ms')
     try:
         if '/ace/' in url:
-            if not json.loads(addon.getSetting('p2p_check')):
+            if not addon.getSetting('p2p_check'):
                 return (url, 0)
             r = requests.get('%s&format=json' % url, timeout=(1., 1.))
             xbmc.log('%s: %s' % (url, r.status_code))

@@ -3,7 +3,7 @@
 from __future__ import print_function, unicode_literals
 
 import time
-import xbmc, xbmcaddon
+import xbmc
 
 class timed_memorize(object):
     def __init__(self, function, seconds):
