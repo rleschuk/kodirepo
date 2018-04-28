@@ -43,8 +43,8 @@ class Base(object):
 
     @property
     def timeout(self):
-        return (int(self.addon.getSetting('max_connect_ms')) / 1000.,
-                int(self.addon.getSetting('max_read_ms')) / 1000. )
+        return (self.addon.getSetting('max_connect_ms') / 1000.,
+                self.addon.getSetting('max_read_ms') / 1000. )
 
     @property
     def cookie(self):

@@ -54,7 +54,7 @@ def channel(channel_id):
             hd = addon.getSetting('hd'),
             p2p = addon.getSetting('p2p'))
         for origin in origins:
-            if not json.loads(addon.getSetting(origin['resource'])): continue
+            if not addon.getSetting(origin['resource']): continue
             module = 'app.resources.%s' % origin['resource']
             try:
                 url = importlib.import_module(module).Resource().get_stream(origin)
@@ -66,7 +66,7 @@ def channel(channel_id):
                 if 'ace_host' in url:
                     url = url.format(ace_host = ace_host, ace_port = ace_port)
                 result = test(url)
-                if result[1] < int(addon.getSetting('max_read_ms')):
+                if result[1] < addon.getSetting('max_read_ms'):
                     notification('%s: %s' % (origin['resource'], result[0]), title=response['name'])
                     return redirect(result[0])
         notification('нет рабочих потоков', title=response['name'])
