@@ -102,7 +102,7 @@ class ResourceBase(Base):
         except:
             pass
 
-    @memorize_response(600)
+    @memorize_response(60)
     def get_response(self, url, referer=None, **kwargs):
         headers = {
             'User-Agent': 'Opera/10.60 (X11; openSUSE 11.3/Linux i686; U; ru) Presto/2.6.30 Version/10.60',

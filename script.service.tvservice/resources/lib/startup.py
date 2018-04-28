@@ -8,7 +8,7 @@ import time
 import requests
 import xbmc, xbmcaddon
 from threading import Thread
-from app import app, addon, monitor
+from app import app, addon
 
 def main():
     app.run(host = '0.0.0.0',
@@ -21,6 +21,7 @@ def stop():
          addon.getSetting('port')))
 
 if __name__ == '__main__':
+    monitor = xbmc.Monitor()
     server = Thread(target=main)
     server.daemon = True
     server.start()

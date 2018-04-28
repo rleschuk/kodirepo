@@ -12,10 +12,10 @@ import xbmc
 
 app = Flask(__name__)
 cors = CORS(app)
-monitor = xbmc.Monitor()
+
 
 from app.utils import order, test, api_request
-from app.kodiapi import kodiapi, notification
+from app import kodiapi
 
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
@@ -67,16 +67,17 @@ def channel(channel_id):
                     url = url.format(ace_host = ace_host, ace_port = ace_port)
                 result = test(url)
                 if result[1] < addon.getSetting('max_read_ms'):
-                    notification('%s: %s' % (origin['resource'], result[0]), title=response['name'])
+                    kodiapi.notification('%s: %s' % (origin['resource'], result[0]), title=response['name'])
                     return redirect(result[0])
-        notification('нет рабочих потоков', title=response['name'])
+        kodiapi.notification('нет рабочих потоков', title=response['name'])
         xbmc.log(("%s: no working streams" % response['name']).encode('utf8'), level=xbmc.LOGERROR)
     else:
-        notification('потоки не найдены', title=response['name'])
+        kodiapi.notification('потоки не найдены', title=response['name'])
     return abort(403)
 
 @app.route('/kodi/<method>', methods=['POST'])
 @cross_origin()
 def kodi(method):
     data = request.get_json()
-    return jsonify(kodiapi(method, data))
+    if method == 'play':
+        return jsonify(kodiapi.play(data.get('name')))
