@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <settings>
   <category label="Основные">
-    <setting default="http://80.211.129.59:8080" id="service_url" label="Server" type="text" />
-    <setting default="admin" id="auth_username" label="Login" type="text" />
-    <setting default="admin" id="auth_password" label="Password" option="hidden" type="text" />
+    <setting default="http://80.211.129.59:8080" id="service_url" label="Сервер" type="text" />
+    <setting default="demo" id="auth_username" label="Логин" type="text" />
+    <setting default="demo" id="auth_password" label="Пароль" option="hidden" type="text" />
     <setting default="127.0.0.1" id="host" label="IP адрес клиета" type="ipaddress" />
     <setting default="8899" id="port" label="Порт клиента" type="number" />
     <setting default="127.0.0.1" id="ace_host" label="ACEStream сервер" type="ipaddress" />

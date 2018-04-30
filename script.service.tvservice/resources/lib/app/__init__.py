@@ -24,7 +24,7 @@ def shutdown():
 
 @app.route('/')
 def playlist():
-    response = api_request('api/channels')
+    response = api_request('api/userchannels')
     m3u = []
     m3u.append('#EXTM3U')
     for channel in response.get('channels', []):
@@ -46,7 +46,7 @@ def epg():
 
 @app.route('/channel/<int:channel_id>')
 def channel(channel_id):
-    response = api_request('api/channels/%s' % channel_id)
+    response = api_request('api/userchannels/%s' % channel_id)
     ace_host = addon.getSetting('ace_host')
     ace_port = addon.getSetting('ace_port')
     if response.get('origins', []):
