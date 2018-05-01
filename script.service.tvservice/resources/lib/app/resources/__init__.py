@@ -78,11 +78,14 @@ class ResourceBase(Base):
             setattr(self, key, value)
 
     @property
+    def path(self):
+        return xbmc.translatePath('special://masterprofile/addon_data/script.service.tvservice')
+
+    @property
     def cookie(self):
         try:
             if self._cookie is None:
-                with open(os.path.join(config.get('TMP_DIR', 'tmp'),
-                        '%s.cookie' % self.urlparse.netloc), 'r') as cs:
+                with open(os.path.join(self.path, '%s.cookie' % self.urlparse.netloc), 'r') as cs:
                     self._cookie = requests.utils.cookiejar_from_dict(json.load(cs))
         except Exception:
             pass
@@ -96,8 +99,7 @@ class ResourceBase(Base):
             else:
                 self._cookie = value
                 value = requests.utils.dict_from_cookiejar(value)
-            with open(os.path.join(config.get('TMP_DIR', 'tmp'),
-                    '%s.cookie' % self.urlparse.netloc), 'w') as cs:
+            with open(self.path, '%s.cookie' % self.urlparse.netloc), 'w') as cs:
                 json.dump(value, cs)
         except:
             pass

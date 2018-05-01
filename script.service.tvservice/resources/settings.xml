@@ -4,16 +4,16 @@
     <setting default="http://80.211.129.59:8080" id="service_url" label="Сервер" type="text" />
     <setting default="demo" id="auth_username" label="Логин" type="text" />
     <setting default="demo" id="auth_password" label="Пароль" option="hidden" type="text" />
-    <setting default="127.0.0.1" id="host" label="IP адрес клиета" type="ipaddress" />
+    <setting default="127.0.0.1" id="host" label="IP адрес клиента" type="ipaddress" />
     <setting default="8899" id="port" label="Порт клиента" type="number" />
-    <setting default="127.0.0.1" id="ace_host" label="ACEStream сервер" type="ipaddress" />
+    <setting default="127.0.0.1" id="ace_host" label="ACEStream клиент" type="ipaddress" />
     <setting default="6878" id="ace_port" label="ACEStream порт" type="number" />
     <setting default="true" id="hd" label="Предпочитать HD потоки" type="bool" />
     <setting default="1" id="p2p" label="Приоритет потоков" type="enum" values="по приоритету ресурса|приоритет P2P| приоритет HLS" />
     <setting default="true" id="p2p_check" label="Проверять P2P потоки" type="bool" />
     <setting default="1000" id="max_connect_ms" label="Таймаут теста ConnectTimeout (мс)" type="number" />
     <setting default="1000" id="max_read_ms" label="Таймаут теста ReadTimeout (мс)" type="number" />
-    <setting default="true" id="pvr.iptvsimple" label="Проверка настроек IPTV-Simple" type="bool" />
+    <setting default="true" id="pvr.iptvsimple" label="Проверка настроек 'PVR IPTV Simple Clinet'" type="bool" />
   </category>
   <category label="Ресурсы">
     <setting default="true" id="mod_torrenttv" label="torrent-tv.ru (P2P)" type="bool" />

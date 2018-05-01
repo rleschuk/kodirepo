@@ -20,7 +20,7 @@ def play(name):
     }''')).get('result', {})
     if not channels:
         dialog = xbmcgui.Dialog()
-        dialog.ok('TVService', 'Каналы отсутствуют.\nПерезапустите плагин "PVR IPTV Simple Clinet"')
+        dialog.ok('TVService', 'Каналы отсутствуют. Перезапустите плагин "PVR IPTV Simple Clinet"')
         raise exceptions.ChannelNotFound()
     channels = channels.get('channels', []) if channels else []
     for channel in channels:
@@ -43,7 +43,7 @@ def check_pvr():
         pvr = xbmcaddon.Addon('pvr.iptvsimple')
     except RuntimeError:
         dialog = xbmcgui.Dialog()
-        dialog.ok('TVService', 'Не включен плагин "PVR IPTV Simple Clinet".\nВключите его и перезапустите сервис')
+        dialog.ok('TVService', 'Не включен плагин "PVR IPTV Simple Clinet". Включите его и перезапустите сервис')
         raise Exception('enable "PVR IPTV Simple Clinet"')
     m3uurl = '%s/playlist?key=%s&host=%s&port=%s' % (
         addon.getSetting('service_url'),
@@ -53,6 +53,6 @@ def check_pvr():
     )
     if pvr.getSetting('m3uPathType') != '1' or pvr.getSetting('m3uUrl') != m3uurl:
        dialog = xbmcgui.Dialog()
-       if dialog.yesno('TVService', 'Изменить настройки клиента IPTV-Simple?'):
+       if dialog.yesno('TVService', 'Изменить настройки клиента "PVR IPTV Simple Clinet"?'):
            if pvr.getSetting('m3uPathType') != '1': pvr.setSetting('m3uPathType', '1')
            if pvr.getSetting('m3uUrl') != m3uurl: pvr.setSetting('m3uUrl', m3uurl)
