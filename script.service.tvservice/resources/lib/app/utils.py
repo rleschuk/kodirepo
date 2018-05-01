@@ -96,11 +96,11 @@ def test(url):
         xbmc.log('ConnectTimeout: %s' % url, level=xbmc.LOGERROR)
     except requests.exceptions.ConnectionError:
         xbmc.log('ConnectionError: %s' % url, level=xbmc.LOGERROR)
-    except InternalServerError:
+    except exceptions.InternalServerError:
         xbmc.log('InternalServerError: %s' % url, level=xbmc.LOGERROR)
-    except NotFound:
+    except exceptions.NotFound:
         xbmc.log('NotFound: %s' % url, level=xbmc.LOGERROR)
-    except StreamError as err:
+    except exceptions.StreamError as err:
         xbmc.log('StreamError: %s' % err, level=xbmc.LOGERROR)
     except Exception as err:
         xbmc.log('Exception: %s - %s' % (url, repr(err)), level=xbmc.LOGERROR)

@@ -18,6 +18,10 @@ def play(name):
         "params": {"channelgroupid": 1},
         "id": 1
     }''')).get('result', {})
+    if not channels:
+        dialog = xbmcgui.Dialog()
+        dialog.ok('TVService', 'Каналы отсутствуют.\nПерезапустите плагин "PVR IPTV Simple Clinet"')
+        raise exceptions.ChannelNotFound()
     channels = channels.get('channels', []) if channels else []
     for channel in channels:
         if name == channel['label']:
@@ -35,7 +39,12 @@ def notification(text, title='TVService'):
 
 def check_pvr():
     if not addon.getSetting('pvr.iptvsimple'): return
-    pvr = xbmcaddon.Addon('pvr.iptvsimple')
+    try:
+        pvr = xbmcaddon.Addon('pvr.iptvsimple')
+    except RuntimeError:
+        dialog = xbmcgui.Dialog()
+        dialog.ok('TVService', 'Не включен плагин "PVR IPTV Simple Clinet".\nВключите его и перезапустите сервис')
+        raise Exception('enable "PVR IPTV Simple Clinet"')
     m3uurl = '%s/playlist?key=%s&host=%s&port=%s' % (
         addon.getSetting('service_url'),
         base64.b64encode('%s:%s' % (addon.getSetting('auth_username'), addon.getSetting('auth_password'))),
