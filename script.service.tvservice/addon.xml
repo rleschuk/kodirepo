@@ -13,11 +13,11 @@
     <extension point="xbmc.python.module" library="resources/lib/"/>
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>
-        <summary>summary</summary>
-        <description>description</description>
-        <disclaimer>disclaimer</disclaimer>
-        <forum>forum</forum>
-        <website>website</website>
-        <source>source</source>
+        <summary></summary>
+        <description>Данный сервис предоставляет возможность удобно просматривать более 1000 телеканалов на Вашем Kodi.</description>
+        <disclaimer></disclaimer>
+        <forum></forum>
+        <website>http://80.211.129.59</website>
+        <source></source>
     </extension>
 </addon>
