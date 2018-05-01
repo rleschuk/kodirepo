@@ -9,11 +9,10 @@ import datetime
 import xbmc
 
 from app import addon
+from app import exceptions
+from app import memorize
 
-class InternalServerError(Exception): pass
-class NotFound(Exception): pass
-class StreamError(Exception): pass
-
+@memorize.memorize_response(3600)
 def get_response(url, **kwargs):
     response = requests.get(url, **kwargs)
     return response
@@ -26,8 +25,6 @@ def api_request(route):
     return json
 
 def order(origins, hd=0, p2p=0):
-    print('hd = %s' % hd)
-    print('p2p = %s' % p2p)
     tmp = origins
     result = []
     if hd == 1:
@@ -64,9 +61,9 @@ def test(url):
             xbmc.log('%s: %s' % (url, r.status_code))
             xbmc.log(r.text)
             if r.status_code == 500:
-                raise InternalServerError(r.status_code)
+                raise exceptions.InternalServerError(r.status_code)
             elif r.status_code not in [200]:
-                raise StreamError(r.status_code)
+                raise exceptions.StreamError(r.status_code)
             data = json.loads(r.text)['response']
             err = json.loads(r.text)['error']
             if not err:
@@ -81,15 +78,15 @@ def test(url):
                 if json.loads(r.text)['response'] == 'ok':
                     latency = delta.seconds*1000 + delta.microseconds/1000
             else:
-                raise StreamError(err)
+                raise exceptions.StreamError(err)
         else:
             d = datetime.datetime.now()
             r = requests.get(url, stream=True, timeout=(1., latency/1000.))
             xbmc.log('%s: %s' % (url, r.status_code))
             if r.status_code == 404:
-                raise NotFound(r.status_code)
+                raise exceptions.NotFound(r.status_code)
             elif r.status_code not in [200]:
-                raise StreamError(r.status_code)
+                raise exceptions.StreamError(r.status_code)
             delta = datetime.datetime.now() - d
             latency = delta.seconds * 1000 + delta.microseconds / 1000
         xbmc.log('latency %s: %s' % (url, latency), level=xbmc.LOGNOTICE)

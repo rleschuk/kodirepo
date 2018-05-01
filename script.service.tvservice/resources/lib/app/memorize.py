@@ -18,9 +18,13 @@ class timed_memorize(object):
     def __call__(self, *args, **kwargs):
         if args not in self._cache \
             or self._cache[args]['time'] + self._relevance <= int(time.time()):
+            if hasattr(self, '_instance'):
+                response = self._function(self._instance, *args, **kwargs)
+            else:
+                response = self._function(*args, **kwargs)
             self._cache[args] = {
                 'time': int(time.time()),
-                'response': self._function(self._instance, *args, **kwargs)
+                'response': response
             }
             xbmc.log('cached %r %r' % (self, args), xbmc.LOGNOTICE)
         return self._cache[args]['response']

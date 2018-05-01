@@ -13,6 +13,7 @@
     <setting default="true" id="p2p_check" label="Проверять P2P потоки" type="bool" />
     <setting default="1000" id="max_connect_ms" label="Таймаут теста ConnectTimeout (мс)" type="number" />
     <setting default="1000" id="max_read_ms" label="Таймаут теста ReadTimeout (мс)" type="number" />
+    <setting default="true" id="pvr.iptvsimple" label="Проверка настроек IPTV-Simple" type="bool" />
   </category>
   <category label="Ресурсы">
     <setting default="true" id="mod_torrenttv" label="torrent-tv.ru (P2P)" type="bool" />
@@ -32,29 +33,4 @@
     <setting default="true" id="mod_yandex" label="yandex.ru (HLS)" type="bool" />
     <setting default="true" id="mod_listiptv" label="listiptv.ru (HLS)" type="bool" />
   </category>
-  <setting id="host" value="127.0.0.1" />
-  <setting id="port" value="8899" />
-  <setting id="p2p_check" value="true" />
-  <setting id="ace_host" value="127.0.0.1" />
-  <setting id="ace_port" value="6878" />
-  <setting id="hd" value="true" />
-  <setting id="p2p" value="1" />
-  <setting id="max_connect_ms" value="1000" />
-  <setting id="max_read_ms" value="2000" />
-  <setting id="mod_oktv" value="true" />
-  <setting id="mod_oneliketv" value="true" />
-  <setting id="mod_onlytv" value="true" />
-  <setting id="mod_allfontv" value="true" />
-  <setting id="mod_listiptv" value="true" />
-  <setting id="mod_alltvonline" value="true" />
-  <setting id="mod_asplaylist" value="true" />
-  <setting id="mod_fanattv" value="true" />
-  <setting id="mod_glaz" value="true" />
-  <setting id="mod_torrenttv" value="true" />
-  <setting id="mod_torrenttv.username" value="" />
-  <setting id="mod_torrenttv.password" value="" />
-  <setting id="mod_trashtv" value="true" />
-  <setting id="mod_tvonly" value="true" />
-  <setting id="mod_tvtorrent" value="true" />
-  <setting id="mod_yandex" value="true" />
 </settings>

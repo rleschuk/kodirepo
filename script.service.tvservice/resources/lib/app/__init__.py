@@ -30,13 +30,11 @@ def playlist():
     for channel in response.get('channels', []):
         m3u.append('#EXTINF:-1 group-title="%s" tvg-logo="%s", %s' % (
             channel['group_name'], channel['logo'], channel['name']))
-        url = [
-            'http://{host}:{port}/channel/{channel_id}'.format(
+        url = 'http://{host}:{port}/channel/{channel_id}'.format(
                 host = addon.getSetting('host'),
                 port = addon.getSetting('port'),
-                channel_id = channel['id']
-            )]
-        m3u.append('&'.join(url))
+                channel_id = channel['id'])
+        m3u.append(url)
     return ('\n'.join(m3u)).encode('utf8')
 
 @app.route('/epg')

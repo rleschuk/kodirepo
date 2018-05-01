@@ -8,7 +8,9 @@ import time
 import requests
 import xbmc, xbmcaddon
 from threading import Thread
-from app import app, addon
+from app import app, addon, kodiapi
+
+kodiapi.check_pvr()
 
 def main():
     app.run(host = '0.0.0.0',
