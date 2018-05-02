@@ -99,9 +99,9 @@ class ResourceBase(Base):
             else:
                 self._cookie = value
                 value = requests.utils.dict_from_cookiejar(value)
-            with open(self.path, '%s.cookie' % self.urlparse.netloc), 'w') as cs:
+            with open(os.path.join(self.path, '%s.cookie' % self.urlparse.netloc), 'w') as cs:
                 json.dump(value, cs)
-        except:
+        except Exception:
             pass
 
     @memorize_response(60)
