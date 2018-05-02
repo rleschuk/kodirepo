@@ -45,14 +45,24 @@ def check_pvr():
         dialog = xbmcgui.Dialog()
         dialog.ok('TVService', 'Не включен плагин "PVR IPTV Simple Clinet". Включите его и перезапустите сервис')
         raise Exception('enable "PVR IPTV Simple Clinet"')
+    key = base64.b64encode('%s:%s' % (addon.getSetting('auth_username'), addon.getSetting('auth_password')))
     m3uurl = '%s/playlist?key=%s&host=%s&port=%s' % (
         addon.getSetting('service_url'),
-        base64.b64encode('%s:%s' % (addon.getSetting('auth_username'), addon.getSetting('auth_password'))),
+        key,
         addon.getSetting('host'),
         addon.getSetting('port'),
     )
-    if pvr.getSetting('m3uPathType') != '1' or pvr.getSetting('m3uUrl') != m3uurl:
+    epgurl = '%s/epgs?key=%s' % (
+        addon.getSetting('service_url'),
+        key
+    )
+    if pvr.getSetting('m3uPathType') != '1' or\
+        pvr.getSetting('m3uUrl') != m3uurl or\
+        pvr.getSetting('epgPathType') != '1' or\
+        pvr.getSetting('epgUrl') != epgurl:
        dialog = xbmcgui.Dialog()
        if dialog.yesno('TVService', 'Изменить настройки клиента "PVR IPTV Simple Clinet"?'):
            if pvr.getSetting('m3uPathType') != '1': pvr.setSetting('m3uPathType', '1')
            if pvr.getSetting('m3uUrl') != m3uurl: pvr.setSetting('m3uUrl', m3uurl)
+           if pvr.getSetting('epgPathType') != '1': pvr.setSetting('epgPathType', '1')
+           if pvr.getSetting('epgUrl') != m3uurl: pvr.setSetting('epgUrl', epgurl)
