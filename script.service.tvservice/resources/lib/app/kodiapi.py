@@ -6,7 +6,6 @@ import json
 import xbmc, xbmcaddon, xbmcgui
 import requests
 import base64
-from kodijson import Kodi
 from app import addon
 from app import exceptions
 
