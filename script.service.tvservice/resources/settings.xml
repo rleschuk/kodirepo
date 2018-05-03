@@ -9,7 +9,7 @@
     <setting default="127.0.0.1" id="ace_host" label="ACEStream клиент" type="ipaddress" />
     <setting default="6878" id="ace_port" label="ACEStream порт" type="number" />
     <setting default="true" id="hd" label="Предпочитать HD потоки" type="bool" />
-    <setting default="1" id="p2p" label="Приоритет потоков" type="enum" values="по приоритету ресурса|приоритет P2P| приоритет HLS" />
+    <setting default="3" id="p2p" label="Приоритет потоков" type="enum" values="по приоритету ресурса|приоритет P2P|приоритет HLS" />
     <setting default="true" id="p2p_check" label="Проверять P2P потоки" type="bool" />
     <setting default="1000" id="max_connect_ms" label="Таймаут теста ConnectTimeout (мс)" type="number" />
     <setting default="1000" id="max_read_ms" label="Таймаут теста ReadTimeout (мс)" type="number" />
